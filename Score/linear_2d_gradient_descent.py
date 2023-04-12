@@ -9,10 +9,8 @@ def train(x, y, lr, epochs):
         y_pred = a * x + b     # 예측값(y=ax+b) 구하기
         error = y - y_pred     # 오차(실제값과 예측값의 차이)
 
-        # 오차 함수를 a로 미분한 값
+        # 오차 함수를 a, b로 미분한 값(순간기울기)
         a_diff = -(2 / len(x)) * sum(x * (error))
-
-        # 오차 함수를 b로 미분한 값
         b_diff = -(2 / len(x)) * sum(error)
 
         # 학습률을 곱해 a, b 값 업데이트

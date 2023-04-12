@@ -3,7 +3,7 @@
 
 # ============================================================
 
-import gradient_descent
+import linear_2d_gradient_descent
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -28,10 +28,10 @@ y = np.array([i[1] for i in data])
 
 # 경사 하강법 함수: MSE를 최소로 만드는 a, b 값 구하기
 # 매개 변수는 (학습률, 학습 반복 횟수)
-a, b = gradient_descent.train(x, y, 0.03, 2001)
+a, b = linear_2d_gradient_descent.train(x, y, 0.03, 2001)
 
 # 그래프 출력
-y_pred = a * x + b
+y_pred = predict(x)
 plt.scatter(x, y)   # 실제 성적
 plt.plot([min(x), max(x)], [min(y_pred), max(y_pred)], color="red")     # 예측값(직선)
 plt.show()
