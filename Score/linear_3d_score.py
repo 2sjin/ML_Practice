@@ -32,7 +32,7 @@ x2 = np.array([i[1] for i in data])
 y = np.array([i[2] for i in data])
 
 # 경사 하강법 함수: MSE를 최소로 만드는 a, b 값 구하기
-# 매개 변수는 (학습률, 학습 반복 횟수)
+# 매개 변수는 (x1, x2, y, 학습률, 학습 반복 횟수)
 a1, a2, b = linear_3d_gradient_descent.train(x1, x2, y, 0.02, 2001)
 
 # x1, x2로 3D 그래프에 출력하기 위한 예측값 계산

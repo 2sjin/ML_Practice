@@ -22,7 +22,7 @@ data = [[2, 0], [4, 0], [6, 0], [8, 0], [10, 1], [12, 1], [14, 1]]
 x = np.array([i[0] for i in data])
 y = np.array([i[1] for i in data])
 
-# 경사 하강법 함수: MSE를 최소로 만드는 a, b 값 구하기
+# 경사 하강법 함수: 오차를 최소화하는 a, b 값 구하기
 # 매개 변수는 (학습률, 학습 반복 횟수)
 a, b = logistic_gradient_descent.train(data, 0.05, 2001)
 

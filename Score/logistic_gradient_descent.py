@@ -4,8 +4,8 @@ import numpy as np
 def sigmoid(x):
     return 1 / (1 + np.e ** (-x))
 
-# 경사 하강법 함수: MSE를 최소로 만드는 a, b 값 구하기
-# 매개 변수는 (학습률, 학습 반복 횟수)
+# 경사 하강법 함수: 오차를 최소화하는 a, b 값 구하기
+# 매개 변수는 (전체 데이터, 학습률, 학습 반복 횟수)
 def train(data, lr, epochs):
     # 기울기 a와 y절편 b
     a, b = 0, 0
