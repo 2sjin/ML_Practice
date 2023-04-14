@@ -17,11 +17,22 @@ data_set = np.loadtxt("ThoraricSurgery.csv", delimiter=",")
 X = data_set[:, 0:17]   # 환자 기록(속성 데이터셋)
 Y = data_set[:, 17]     # 수술 결과(클래스 데이터셋)
 
-# 딥러닝 구조 결정(모델 설정) 및 실행: 2층 모델
+# 딥러닝 모델 선언
 model = Sequential()
+
+# 입력층 + 은닉층
+# 데이터에서 17개의 값을 받아 은닉층의 30개의 노드로 보냄
+# 활성화 함수: 렐루 함수
 model.add(Dense(30, input_dim=17, activation='relu'))
+
+# 출력층(출력 노드 1개)
+# 활성화 함수: 시그모이드 함수
 model.add(Dense(1, activation='sigmoid'))
 
-# 딥러닝 실행
+# 딥러닝 모델 컴파일
+# 오차 함수: 이항 교차 엔트로피
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+
+# 딥러닝 수행
+# 전체 샘플을 {batch_size}개씩 끊어서 학습, {epochs}회 반복
 model.fit(X, Y, epochs=100, batch_size=10)
