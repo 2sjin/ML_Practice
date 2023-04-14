@@ -6,7 +6,7 @@ import pandas as pd
 model = load_model("model.hdf5")
 
 # 테스트 데이터셋 불러오기
-df = pd.read_csv("dataset_test.csv")
+df = pd.read_csv("dataset_test.csv", header=None)
 
 # 데이터프레임을 2차원 넘파이 배열로 변환하고, 속성 데이터셋 추출
 arr_2d = df.values                   # 2차원 넘파이 배열 형태로 변환
