@@ -16,7 +16,7 @@ np.random.seed(seed)
 tf.random.set_seed(3)
 
 # csv 데이터 불러오기
-df = pd.read_csv("dataset_train.csv", header=None)
+df = pd.read_csv("dataset.csv", header=None)
 
 # 데이터를 X와 Y로 구분하기
 dataset = df.values    # 2차원 넘파이 배열 형태로 변환
@@ -48,12 +48,9 @@ for train, test in skf.split(X, Y):
     # 전체 샘플을 {batch_size}개씩 끊어서 학습, {epochs}회 반복
     model.fit(X[train], Y[train], epochs=100, batch_size=5)
 
-    # 정확도 출력 및 리스트에 저장
+    # 정확도 리스트에 저장
     current_accuracy = model.evaluate(X[test], Y[test])[1]
-    print(f"\n 정확도(Accuracy): {current_accuracy:.4f}")
     accuracy_list.append(current_accuracy)
 
+# 전체 정확도 출력
 print(accuracy_list)
-
-# 모델 저장하기
-model.save("model.h5")
