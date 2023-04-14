@@ -1,5 +1,4 @@
-# '파마 인디언들의 당뇨병 여부' 데이터 분석 및 시각화
-# (데이터 전처리 과정)
+# 데이터 분석(전처리): 아이리스 꽃 품종 예측하기
 
 import pandas as pd
 import matplotlib.pyplot as plt
