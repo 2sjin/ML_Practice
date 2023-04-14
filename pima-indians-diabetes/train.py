@@ -11,7 +11,7 @@ np.random.seed(3)
 tf.random.set_seed(3)
 
 # 데이터 불러오기
-data_set = np.loadtxt("pima-indians-diabetes.csv", delimiter=",")
+data_set = np.loadtxt("dataset_train.csv", delimiter=",")
 
 # 피마 인디언의 정보와 당뇨병 발병 여부를 X와 Y로 구분하여 저장
 X = data_set[:, 0:8]   # 속성 데이터셋
@@ -35,3 +35,6 @@ model.fit(X, Y, epochs=100, batch_size=10)
 
 # 정확도 출력
 print(f"\n 정확도(Accuracy): {model.evaluate(X, Y)[1]:.4f}")
+
+# 모델 저장하기
+model.save("model.h5")
