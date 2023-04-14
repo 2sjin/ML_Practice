@@ -11,8 +11,8 @@ import numpy as np
 import pandas as pd
 
 # 난수 시드 설정(시드가 같으면 실행할 때 마다 같은 결과 출력)
-np.random.seed(6)
-tf.random.set_seed(6)
+np.random.seed(5)
+tf.random.set_seed(5)
 
 # csv 데이터 불러오기
 df = pd.read_csv("dataset_train.csv", header=None)
