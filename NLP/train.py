@@ -1,7 +1,6 @@
 # 자연어 처리(NLP)
 # 영화 리뷰의 긍정/부정 예측하기
 
-# 케라스 함수 및 라이브러리 호출
 from keras.models import Sequential
 from keras.layers import Dense, Flatten, Embedding
 from keras.preprocessing.text import Tokenizer
@@ -12,8 +11,8 @@ import numpy as np
 import pandas as pd
 
 # 난수 시드 설정(시드가 같으면 실행할 때 마다 같은 결과 출력)
-np.random.seed(5)
-tf.random.set_seed(5)
+np.random.seed(3)
+tf.random.set_seed(3)
 
 # csv 데이터 불러오기
 df = pd.read_csv("dataset_train.csv", header=None)
