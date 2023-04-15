@@ -46,7 +46,7 @@ model.add(Dense(1, activation='sigmoid'))
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 
 # 딥러닝 실행 및 모델 저장
-model.fit(padded_X, Y, epochs=20)
+model.fit(padded_X, Y, epochs=30)
 
 # 정확도 출력
 print(f"\n 정확도(Accuracy): {model.evaluate(padded_X, Y)[1]:.4f}")
