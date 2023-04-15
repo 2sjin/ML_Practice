@@ -15,7 +15,7 @@ np.random.seed(3)
 tf.random.set_seed(3)
 
 # csv 데이터 불러오기
-df = pd.read_csv("dataset_train.csv", header=None)
+df = pd.read_csv("dataset_train.csv", header=None, delimiter="|")
 X = df[0].values.flatten()    # 리뷰 텍스트
 Y = df[1].values.flatten()    # 긍정=1, 부정=0
 

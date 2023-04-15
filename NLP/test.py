@@ -14,7 +14,7 @@ tf.random.set_seed(3)
 model = load_model("model.h5")
 
 # 테스트 데이터셋 불러오기
-df = pd.read_csv("dataset_test.csv", header=None)
+df = pd.read_csv("dataset_test.csv", header=None, delimiter="|")
 X = df[0].values.flatten()    # 리뷰 텍스트
 Y = df[1].values.flatten()    # 긍정=1, 부정=0
 
