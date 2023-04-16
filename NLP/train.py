@@ -2,7 +2,7 @@
 # 영화 리뷰의 긍정/부정 예측하기
 
 from keras.models import Sequential
-from keras.layers import Dense, Flatten, Embedding
+from keras.layers import Dense, Flatten, Embedding, Dropout
 from keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
@@ -40,13 +40,15 @@ word_size = len(token.word_index) + 1
 model = Sequential()
 model.add(Embedding(word_size, 8, input_length=4))  # 단어 임베딩(배열 압축)
 model.add(Flatten())
+model.add(Dense(4, activation='relu'))
+model.add(Dropout(0.2))
 model.add(Dense(1, activation='sigmoid'))
 
 # 딥러닝 모델 컴파일
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 
 # 딥러닝 실행 및 모델 저장
-model.fit(padded_X, Y, epochs=30)
+model.fit(padded_X, Y, epochs=7)
 
 # 정확도 출력
 print(f"\n 정확도(Accuracy): {model.evaluate(padded_X, Y)[1]:.4f}")
