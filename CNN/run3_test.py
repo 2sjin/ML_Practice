@@ -1,6 +1,7 @@
 import torch
 from torchvision import transforms
 from PIL import Image
+from tkinter import filedialog
 
 import config
 
@@ -35,7 +36,10 @@ transforms_test = transforms.Compose([
 # ==============================================================================================
 # 이미지 테스트
 # ==============================================================================================
-image = Image.open(config.dir_rel + '/test_image.jpg')
+file_types = (('JPEG 파일', '*.jpg;*.jpeg'), ('PNG 파일', '*.png'), ('GIF 파일', '*.gif'), ('BMP 파일', '*.bmp'))
+file_path = filedialog.askopenfilename(initialdir='./', title='이미지 파일 선택', filetypes=file_types)
+
+image = Image.open(file_path)
 image = transforms_test(image).unsqueeze(0).to(device)
 
 with torch.no_grad():
