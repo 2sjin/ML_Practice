@@ -1,6 +1,6 @@
 # Custom
-CNN/bing_image_downloader/
-CNN/custom_dataset/
+*/bing_image_downloader/
+*/custom_dataset/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
