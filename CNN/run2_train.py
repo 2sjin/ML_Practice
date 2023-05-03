@@ -1,6 +1,3 @@
-# 필요한 라이브러리 설치하기
-# git clone https://github.com/ndb796/bing_image_downloader
-
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -9,11 +6,18 @@ from torchvision import datasets, models, transforms
 import os
 import time
 
-# 학습을 위해 필요한 라이브러리를 불러옵니다.
-device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu") # device 객체
+import config
 
 
-# 데이터셋을 불러옵니다.
+# ==============================================================================================
+# device 객체 생성
+# ==============================================================================================
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu") 
+
+
+# ==============================================================================================
+# 데이터셋 불러오기
+# ==============================================================================================
 # 데이터셋을 불러올 때 사용할 변형(transformation) 객체 정의
 transforms_train = transforms.Compose([
     transforms.Resize((224, 224)),
@@ -28,7 +32,8 @@ transforms_test = transforms.Compose([
     transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
 ])
 
-data_dir = './CNN/custom_dataset'
+# 데이터셋 불러오기
+data_dir = config.dir_rel + '/custom_dataset'
 train_datasets = datasets.ImageFolder(os.path.join(data_dir, 'train'), transforms_train)
 test_datasets = datasets.ImageFolder(os.path.join(data_dir, 'test'), transforms_test)
 
@@ -42,18 +47,24 @@ class_names = train_datasets.classes
 print('클래스:', class_names)
 
 
-# 학습할 CNN 딥러닝 모델 객체를 초기화합니다.
+# ==============================================================================================
+# 학습할 CNN 딥러닝 모델 객체 초기화
+# ==============================================================================================
 model = models.resnet34(pretrained=True)
 num_features = model.fc.in_features
+
 # 전이 학습(transfer learning): 모델의 출력 뉴런 수를 3개로 교체하여 마지막 레이어 다시 학습
 model.fc = nn.Linear(num_features, 3)
 model = model.to(device)
-
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.SGD(model.parameters(), lr=0.001, momentum=0.9)
 
+# ==============================================================================================
 
-# 학습을 진행합니다.
+
+# ==============================================================================================
+# 학습 진행
+# ==============================================================================================
 num_epochs = 2
 model.train()
 start_time = time.time()
@@ -88,8 +99,9 @@ for epoch in range(num_epochs):
     print('#{} Loss: {:.4f} Acc: {:.4f}% Time: {:.4f}s'.format(epoch, epoch_loss, epoch_acc, time.time() - start_time))
 
 
-
-# 학습된 모델을 평가합니다.
+# ==============================================================================================
+# 학습된 모델 평가
+# ==============================================================================================
 model.eval()
 start_time = time.time()
 
@@ -116,6 +128,8 @@ with torch.no_grad():
     print('[Test Phase] Loss: {:.4f} Acc: {:.4f}% Time: {:.4f}s'.format(epoch_loss, epoch_acc, time.time() - start_time))
 
 
+# ==============================================================================================
 # 모델 저장하기
-torch.save(model, './CNN/model.pth')
-
+# ==============================================================================================
+save_path = config.dir_rel + '/model.pth'
+torch.save(model, save_path)
