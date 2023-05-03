@@ -14,7 +14,6 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu") # device
 
 
 # 데이터셋을 불러옵니다.
-
 # 데이터셋을 불러올 때 사용할 변형(transformation) 객체 정의
 transforms_train = transforms.Compose([
     transforms.Resize((224, 224)),
